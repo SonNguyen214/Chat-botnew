@@ -1,0 +1,12 @@
+{
+  "files": [],
+    "compilerOptions": {
+    "jsx": "react-jsx", // mới (React 17+)
+    "noUnusedLocals": false, // tắt báo unused
+     "types": ["node"]
+  },
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}
