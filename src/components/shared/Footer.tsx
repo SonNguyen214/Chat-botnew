@@ -22,6 +22,7 @@ const Footer = ({ messages, setMessages, config, primaryColor }: IProps) => {
   }, [messages]);
 
   const sendMessage = async (text: string) => {
+    alert("clicked");
     const storeConversationId = getConversationId();
 
     if (!text.trim()) return;
