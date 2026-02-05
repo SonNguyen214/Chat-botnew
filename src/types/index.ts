@@ -2,6 +2,7 @@
 export interface ChatbotConfig extends CSSStyle {
   token: string;
   u_id: string;
+  idApp?: string | number; // optional app id
   greeting?: string;
   theme?: "light" | "dark";
   fabIcon?: string; // icon bubble

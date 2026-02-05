@@ -18,10 +18,11 @@ interface IProps {
 const Footer = ({ messages, setMessages, config, primaryColor }: IProps) => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const storeConversationId = useSelector(
-    (state: RootState) => state.conversation.conversationId,
+    (state: RootState) => state?.conversation?.conversationId,
   );
   const [input, setInput] = useState("");
   const dispatch = useDispatch<AppDispatch>();
+  const origin = window?.location?.origin;
 
   const isLoading = useMemo(() => {
     return messages?.some((msg) => msg?.from === "botLoading");
@@ -54,6 +55,10 @@ const Footer = ({ messages, setMessages, config, primaryColor }: IProps) => {
             "X-Chatbot-Token": config?.token || undefined,
             "X-User-Id": config?.u_id,
             "Content-Type": "application/json",
+            "X-Origin":
+              origin && !origin.startsWith("about")
+                ? origin
+                : (config?.idApp ?? "") ,
           },
         },
       );
