@@ -1,11 +1,5 @@
 import dayjs from "dayjs";
-import { LOCAL_STORAGE_KEY } from "../constant";
 import type { Message } from "../types";
-
-export const getConversationId = () => {
-  const conversationId = localStorage.getItem(LOCAL_STORAGE_KEY.conversationId);
-  return conversationId;
-};
 
 /** Định dạng ngày theo format truyền vào.
  * Mặc định format: 'DD/MM/YYYY'.

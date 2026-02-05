@@ -2,9 +2,11 @@ import { useMemo, useRef, useState } from "react";
 import type { ChatbotConfig, Message } from "../../types";
 import axios from "axios";
 import { motion } from "framer-motion";
-import { formatDate, getConversationId } from "../../utils";
-import { LOCAL_STORAGE_KEY } from "../../constant";
+import { formatDate } from "../../utils";
 import dayjs from "dayjs";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "../../redux/store";
+import { setConversationId } from "../../redux/reducers/Conversation";
 
 interface IProps {
   config: ChatbotConfig;
@@ -15,16 +17,17 @@ interface IProps {
 
 const Footer = ({ messages, setMessages, config, primaryColor }: IProps) => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const storeConversationId = useSelector(
+    (state: RootState) => state.conversation.conversationId,
+  );
   const [input, setInput] = useState("");
+  const dispatch = useDispatch<AppDispatch>();
 
   const isLoading = useMemo(() => {
     return messages?.some((msg) => msg?.from === "botLoading");
   }, [messages]);
 
   const sendMessage = async (text: string) => {
-    alert("clicked");
-    const storeConversationId = getConversationId();
-
     if (!text.trim()) return;
     setMessages((prev: Message[]) => [
       ...prev,
@@ -57,10 +60,7 @@ const Footer = ({ messages, setMessages, config, primaryColor }: IProps) => {
       botResponse = response.data?.data?.answer || "Bot không trả lời";
 
       if (!storeConversationId) {
-        localStorage.setItem(
-          LOCAL_STORAGE_KEY.conversationId,
-          response.data?.data?.conversationId,
-        );
+        dispatch(setConversationId(response.data?.data?.conversationId ?? ""));
       }
 
       setTimeout(() => {
