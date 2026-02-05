@@ -3,6 +3,8 @@ import ChatbotBubble from "./components/ChatbotBubble";
 import type { ChatbotConfig } from "./types";
 import ChatbotPopup from "./components/ChatBotPopup";
 import { isHideBot } from "./constant";
+import { store } from "./redux/store";
+import { Provider } from "react-redux";
 
 export function init(config: ChatbotConfig) {
   if (isHideBot(config)) return;
@@ -10,7 +12,11 @@ export function init(config: ChatbotConfig) {
   container.id = "chatbot-widget-root";
   document.body.appendChild(container);
 
-  ReactDOM.createRoot(container).render(<ChatbotBubble config={config} />);
+  ReactDOM.createRoot(container).render(
+    <Provider store={store}>
+      <ChatbotBubble config={config} />
+    </Provider>,
+  );
 }
 
 export function initPopup(config: ChatbotConfig) {
@@ -19,7 +25,11 @@ export function initPopup(config: ChatbotConfig) {
   container.id = "chatbot-widget-root";
   document.body.appendChild(container);
 
-  ReactDOM.createRoot(container).render(<ChatbotPopup config={config} />);
+  ReactDOM.createRoot(container).render(
+    <Provider store={store}>
+      <ChatbotPopup config={config} />
+    </Provider>,
+  );
 }
 
 // gắn ra window cho CDN ESM/iife
