@@ -19,9 +19,10 @@ This project provides a **bubble chat** at the bottom-right corner
 You can load this script locally in any HTML page for testing:
 
 **Using buble chat**
+
 ```html
 <script type="module">
-  import { init as MiPoBubleChat } from "https://cdn.jsdelivr.net/gh/SonNguyen214/Chatbot-cdn@main/dist/chatbot-0.1.7.js";
+  import { init as MiPoBubleChat } from "https://cdn.jsdelivr.net/gh/SonNguyen214/Chatbot-cdn@main/dist/chatbot-0.2.2js";
 
   MiPoBubleChat({
     u_id: " user id",
@@ -31,14 +32,29 @@ You can load this script locally in any HTML page for testing:
 ```
 
 **Using popup chat**
+
 ```html
 <script type="module">
-  import { initPopup as MiPoPopupChatBot } from "https://cdn.jsdelivr.net/gh/SonNguyen214/Chatbot-cdn@main/dist/chatbot-0.1.7.js";
+  import { initPopup as MiPoPopupChatBot } from "https://cdn.jsdelivr.net/gh/SonNguyen214/Chatbot-cdn@main/dist/chatbot-0.2.2js";
 
   MiPoPopupChatBot({
     u_id: " user id",
     token: "user token",
-    autoShowDelay: 5000 
+    autoShowDelay: 5000,
+  });
+</script>
+```
+
+**Using in mobile app**
+
+```html
+<script type="module">
+  import { init as MiPoBubleChat } from "https://cdn.jsdelivr.net/gh/SonNguyen214/Chatbot-cdn@main/dist/chatbot-0.2.2.js";
+
+  MiPoBubleChat({
+    u_id: " user id",
+    token: "user token",
+    idApp: "your app id",
   });
 </script>
 ```
@@ -59,71 +75,74 @@ MiPoBubleChat({
   theme: "light",
   primaryColor: "#ffc600",
 });
-``` 
+```
 
 ## 📌 Options Reference
 
-***🔐 User Authentication (Required)***
-| Property | Type     | Required | Description                |
+**_🔐 User Authentication (Required)_**
+| Property | Type | Required | Description |
 | -------- | -------- | -------- | -------------------------- |
-| `token`  | `string` | ✅        | User token after login     |
-| `u_id`   | `string` | ✅        | Unique user ID after login |
+| `token` | `string` | ✅ | User token after login |
+| `u_id` | `string` | ✅ | Unique user ID after login |
+| `idApp` | `string` | ✅ | Unique app ID (only using in mobile app) |
 
-
-***🤖 Bot Information***
-| Property         | Type     | Description                                                    |
+**_🤖 Bot Information_**
+| Property | Type | Description |
 | ---------------- | -------- | -------------------------------------------------------------- |
-| `botName`        | `string` | Bot display name shown in the chat header                      |
-| `greeting`       | `string` | Initial greeting message when the chat opens (supports emojis) |
-| `botDescription` | `string` | Short description displayed under the bot name                 |
+| `botName` | `string` | Bot display name shown in the chat header |
+| `greeting` | `string` | Initial greeting message when the chat opens (supports emojis) |
+| `botDescription` | `string` | Short description displayed under the bot name |
 
-***📐 Chat Window Size***
-| Property | Type     | Default | Description                  |
+**_📐 Chat Window Size_**
+| Property | Type | Default | Description |
 | -------- | -------- | ------- | ---------------------------- |
-| `width`  | `number` | `400`   | Chat window width in pixels  |
-| `height` | `number` | `600`   | Chat window height in pixels |
+| `width` | `number` | `400` | Chat window width in pixels |
+| `height` | `number` | `600` | Chat window height in pixels |
 
-***🎨 Theme & Appearance***
-| Property       | Type                | Description                                   |
+**_🎨 Theme & Appearance_**
+| Property | Type | Description |
 | -------------- | ------------------- | --------------------------------------------- |
-| `theme`        | `'light' \| 'dark'` | Chat theme mode                               |
-| `primaryColor` | `string`            | Primary color of the chat UI (e.g. `#ffc600`) |
-| `fontFamily`   | `string`            | Font family used in the chat window           |
+| `theme` | `'light' \| 'dark'` | Chat theme mode |
+| `primaryColor` | `string` | Primary color of the chat UI (e.g. `#ffc600`) |
+| `fontFamily` | `string` | Font family used in the chat window |
 
-***🧑‍🚀 Avatar & Icons***
-| Property    | Type     | Description                             |
+**_🧑‍🚀 Avatar & Icons_**
+| Property | Type | Description |
 | ----------- | -------- | --------------------------------------- |
-| `fabIcon`   | `string` | Icon for the floating chat bubble (FAB) |
-| `botAvatar` | `string` | Bot avatar image URL                    |
+| `fabIcon` | `string` | Icon for the floating chat bubble (FAB) |
+| `botAvatar` | `string` | Bot avatar image URL |
 
-***🎛️ Custom Styles (CSS-in-JS)***
-| Property          | Type     | Description                                  |
+**_🎛️ Custom Styles (CSS-in-JS)_**
+| Property | Type | Description |
 | ----------------- | -------- | -------------------------------------------- |
-| `headerStyle`     | `object` | Custom styles for the chat header            |
-| `chatWindowStyle` | `object` | Custom styles for the chat content area      |
-| `bubbleStyle`     | `object` | Custom styles for the floating bubble button |
+| `headerStyle` | `object` | Custom styles for the chat header |
+| `chatWindowStyle` | `object` | Custom styles for the chat content area |
+| `bubbleStyle` | `object` | Custom styles for the floating bubble button |
 
-***⌨️ Footer & Input Styling***
+**_⌨️ Footer & Input Styling_**
+
 ```js
 footerStyle: {
   inputStyle: {}, // Chat input CSS styles
   iconStyle: {},  // Send button icon styles
 }
 ```
+
 | Property                 | Type     | Description                  |
 | ------------------------ | -------- | ---------------------------- |
 | `footerStyle`            | `object` | Footer customization options |
 | `footerStyle.inputStyle` | `object` | Input field styles           |
 | `footerStyle.iconStyle`  | `object` | Send button styles           |
 
-***⏱️ Behavior Settings***
-| Property        | Type     | Default | Description                                  |
+**_⏱️ Behavior Settings_**
+| Property | Type | Default | Description |
 | --------------- | -------- | ------- | -------------------------------------------- |
-| `autoShowDelay` | `number` | `0`     | Automatically open chat after X milliseconds |
+| `autoShowDelay` | `number` | `0` | Automatically open chat after X milliseconds |
 
 Example (for using chatbot modal)
+
 ```js
-autoShowDelay: 5000 // Opens chat after 5 seconds
+autoShowDelay: 5000; // Opens chat after 5 seconds
 ```
 
 ## Development
@@ -144,5 +163,5 @@ npm install && npm run build
 **3.** The output bundle is located in:
 
 ```bash
-dist/chatbot-0.1.7.js
+dist/chatbot-0.2.2.js
 ```
