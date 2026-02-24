@@ -38,7 +38,7 @@ const Header = ({
           display: "flex",
           alignItems: "center",
           gap: 8,
-          minWidth: "80%",
+          maxWidth: "80%",
         }}
       >
         <img
@@ -52,7 +52,7 @@ const Header = ({
             background: "#fff",
           }}
         />
-        <div style={{ display: "flex", flexDirection: "column", width: "85%" }}>
+        <div style={{ display: "flex", flexDirection: "column", maxWidth: "85%" }}>
           <span>{config?.botName || "MipoBot"}</span>
     
             <span

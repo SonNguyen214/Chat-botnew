@@ -40,7 +40,6 @@ const Messages = ({ config, messages, messagesEndRef, description }: IProps) => 
         flexDirection: "column",
         gap: 12,
         fontSize: config.chatWindowStyle?.fontSize || 14,
-        ...config?.chatWindowStyle,
       }}
     >
       <motion.div

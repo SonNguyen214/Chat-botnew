@@ -66,6 +66,7 @@ export const ChatBotContainer = ({ config, setClosePopup }: IProps) => {
         letterSpacing: "0.25px",
         wordSpacing: "1.2px",
         ...positionStyle,
+        ...config?.chatWindowStyle,
       }}
     >
       {/* Header */}
