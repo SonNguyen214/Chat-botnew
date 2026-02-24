@@ -5,6 +5,7 @@ import logo from "../../../assets/logo.png";
 interface IProps {
   config: ChatbotConfig;
   primaryColor: string;
+  description: string;
   setClosePopup: (a: boolean) => void;
   setShowConfirmReset: (a: boolean) => void;
 }
@@ -13,6 +14,7 @@ const Header = ({
   config,
   setClosePopup,
   primaryColor,
+  description,
   setShowConfirmReset,
 }: IProps) => {
   return (
@@ -52,7 +54,7 @@ const Header = ({
         />
         <div style={{ display: "flex", flexDirection: "column", width: "85%" }}>
           <span>{config?.botName || "MipoBot"}</span>
-          {config?.botDescription && (
+    
             <span
               style={{
                 fontSize: 13,
@@ -63,9 +65,9 @@ const Header = ({
                 whiteSpace: "nowrap",
               }}
             >
-              {config?.botDescription || "Trợ lý ảo Mipo"}
+              {description}
             </span>
-          )}
+       
         </div>
       </motion.div>
 

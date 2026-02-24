@@ -5,6 +5,8 @@ import PopupReset from "./PopupReset";
 import Footer from "./Footer";
 import Messages from "./Messages";
 import Header from "./Header";
+import { formatDate } from "../../utils";
+import dayjs from "dayjs";
 
 interface IProps {
   config: ChatbotConfig;
@@ -12,17 +14,18 @@ interface IProps {
 }
 
 export const ChatBotContainer = ({ config, setClosePopup }: IProps) => {
-  // const initMessage: Message = {
-  //   from: "bot",
-  //   text: config?.greeting || "Xin chào 🖐",
-  //   timeStamp: formatDate(dayjs()),
-  // };
+  const initMessage: Message = {
+    from: "bot",
+    text: config?.greeting || "Xin chào 🖐",
+    timeStamp: formatDate(dayjs()),
+  };
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>([initMessage]);
   const [showConfirmReset, setShowConfirmReset] = useState(false);
 
   const theme = config.theme || "light";
+  const description = config.botDescription || "Chào mừng bạn đến với MiPo!";
   const bgColor = theme === "dark" ? "#1f1f1f" : "#fff";
   const textColor = theme === "dark" ? "#eee" : "#000";
   const primaryColor = config?.primaryColor || "#ffc600";
@@ -52,7 +55,7 @@ export const ChatBotContainer = ({ config, setClosePopup }: IProps) => {
         background: config?.background || bgColor,
         color: config?.color ?? textColor,
         borderRadius: config?.borderRadius || 8,
-        boxShadow: `0 8px 24px ${config?.primaryColor}`,
+        boxShadow: `0 0px 2px ${config?.primaryColor}`,
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
@@ -69,6 +72,7 @@ export const ChatBotContainer = ({ config, setClosePopup }: IProps) => {
       <Header
         config={config}
         primaryColor={primaryColor}
+        description={description}
         setClosePopup={setClosePopup}
         setShowConfirmReset={setShowConfirmReset}
       />
@@ -77,6 +81,7 @@ export const ChatBotContainer = ({ config, setClosePopup }: IProps) => {
         config={config}
         messages={messages}
         textColor={textColor}
+        description={description}
         messagesEndRef={messagesEndRef}
       />
 
@@ -95,7 +100,7 @@ export const ChatBotContainer = ({ config, setClosePopup }: IProps) => {
           setShowConfirmReset={setShowConfirmReset}
           textColor={textColor}
           handleClick={() => {
-            setMessages([]);
+            setMessages([initMessage]);
             setShowConfirmReset(false);
           }}
         />

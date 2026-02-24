@@ -18,15 +18,29 @@ This project provides a **bubble chat** at the bottom-right corner
 
 You can load this script locally in any HTML page for testing:
 
-**Using buble chat**
+**Using in website (buble chat)**
 
 ```html
 <script type="module">
-  import { init as MiPoBubleChat } from "https://cdn.jsdelivr.net/gh/SonNguyen214/Chatbot-cdn@main/dist/chatbot-0.2.2js";
+  import { init as MiPoBubleChat } from "https://mipo.vnpost.vn/plugin/chatbot.js";
 
   MiPoBubleChat({
-    u_id: " user id",
+    u_id: "user id",
     token: "user token",
+  });
+</script>
+```
+
+**Using in app**
+
+```html
+<script type="module">
+  import { init as MiPoBubleChat } from "https://mipo.vnpost.vn/plugin/chatbot.js";
+
+  MiPoBubleChat({
+    u_id: "user id",
+    token: "user token",
+    idApp: "id App",
   });
 </script>
 ```
@@ -35,26 +49,12 @@ You can load this script locally in any HTML page for testing:
 
 ```html
 <script type="module">
-  import { initPopup as MiPoPopupChatBot } from "https://cdn.jsdelivr.net/gh/SonNguyen214/Chatbot-cdn@main/dist/chatbot-0.2.2js";
+  import { initPopup as MiPoPopupChatBot } from "https://mipo.vnpost.vn/plugin/chatbot.js";
 
   MiPoPopupChatBot({
-    u_id: " user id",
+    u_id: "user id",
     token: "user token",
     autoShowDelay: 5000,
-  });
-</script>
-```
-
-**Using in mobile app**
-
-```html
-<script type="module">
-  import { init as MiPoBubleChat } from "https://cdn.jsdelivr.net/gh/SonNguyen214/Chatbot-cdn@main/dist/chatbot-0.2.2.js";
-
-  MiPoBubleChat({
-    u_id: " user id",
-    token: "user token",
-    idApp: "your app id",
   });
 </script>
 ```
@@ -65,7 +65,7 @@ You can configure your chatbot widget by passing an options object:
 
 ```ts
 MiPoBubleChat({
-  botName: "MiPoBot",
+  botName: "MiPo",
   greeting: "Hello 🖐",
   botDescription: "Welcome to Mipo",
   width: 450,
@@ -81,10 +81,10 @@ MiPoBubleChat({
 
 **_🔐 User Authentication (Required)_**
 | Property | Type | Required | Description |
-| -------- | -------- | -------- | -------------------------- |
-| `token` | `string` | ✅ | User token after login |
+| -------- | -------- | --------- | ------------------------------------ |
+| `token` | `string` | ✅ | Authen Token provided by MiPo Admin |
 | `u_id` | `string` | ✅ | Unique user ID after login |
-| `idApp` | `string` | ✅ | Unique app ID (only using in mobile app) |
+| `idApp` | `string` | ✅ | Unique app ID (only using in application) |
 
 **_🤖 Bot Information_**
 | Property | Type | Description |
@@ -163,5 +163,5 @@ npm install && npm run build
 **3.** The output bundle is located in:
 
 ```bash
-dist/chatbot-0.2.2.js
+dist/chatbot-0.1.7.js
 ```

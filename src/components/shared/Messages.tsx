@@ -6,13 +6,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import TypingDots from "./TypingDots";
 import type { Ref } from "react";
 import logo from "../../../assets/logo.png";
-import { buildMessagesWithDate } from "../../utils";
 
 interface IProps {
   config: ChatbotConfig;
   messages: Message[];
   messagesEndRef: Ref<HTMLDivElement> | undefined;
   textColor: string;
+  description: string;
 }
 
 const childVariants = {
@@ -28,7 +28,7 @@ const childVariants = {
   },
 };
 
-const Messages = ({ config, messages, messagesEndRef, textColor }: IProps) => {
+const Messages = ({ config, messages, messagesEndRef, description }: IProps) => {
   return (
     <motion.div
       className="message-wrapper"
@@ -52,7 +52,7 @@ const Messages = ({ config, messages, messagesEndRef, textColor }: IProps) => {
           flexDirection: "column",
           textAlign: "center",
           gap: 12,
-          marginBottom: 35,
+          marginBottom: 12,
         }}
       >
         <motion.img
@@ -67,15 +67,13 @@ const Messages = ({ config, messages, messagesEndRef, textColor }: IProps) => {
         >
           {config?.botName}
         </motion.div>
-        {config?.botDescription && (
           <motion.div style={{ fontSize: 13, fontWeight: 500, maxWidth: 350 }}>
-            {config?.botDescription || "Trợ lý ảo Mipo"}
+            {description}
           </motion.div>
-        )}
       </motion.div>
 
       <AnimatePresence initial={false}>
-        {buildMessagesWithDate(messages).map((msg, idx) => {
+        {messages.map((msg, idx) => {
           const isBot = msg?.from === "bot" || msg?.from === "botLoading";
           return (
             <motion.div
@@ -90,12 +88,12 @@ const Messages = ({ config, messages, messagesEndRef, textColor }: IProps) => {
                 alignSelf: msg?.from === "user" ? "flex-end" : "flex-start",
                 justifyContent:
                   msg?.from === "user" ? "flex-end" : "flex-start",
-                ...(msg.from === "date" && { justifyContent: "center" }),
+                // ...(msg.from === "date" && { justifyContent: "center" }),
                 maxWidth: "100%",
                 width: "100%",
               }}
             >
-              {isBot && config.botAvatar && (
+              {isBot && (
                 <img
                   className="message-avatar"
                   src={config.botAvatar || logo}
@@ -126,11 +124,6 @@ const Messages = ({ config, messages, messagesEndRef, textColor }: IProps) => {
                   alignItems: msg?.from === "botLoading" ? "center" : "normal",
                   display: msg?.from === "botLoading" ? "flex" : "block",
                   position: "relative",
-                  ...(msg.from === "date" && {
-                    background: "transparent",
-                    fontWeight: 600,
-                    color: textColor,
-                  }),
                 }}
               >
                 {msg?.from === "botLoading" ? (
@@ -151,19 +144,19 @@ const Messages = ({ config, messages, messagesEndRef, textColor }: IProps) => {
                     </ReactMarkdown>
 
                     <motion.span
-                      variants={childVariants}
-                      hidden={msg.from === "date"}
+                      variants={idx === 0 ? {} : childVariants}
                       style={{
                         color: "gray",
                         fontSize: 12,
                         position: "absolute",
-                        top: "-30px",
+                        display: idx === 0 ? 'none' : "block",
+                        top: idx === 0 ? '-18px' : "-30px",
                         left: msg?.from === "user" ? "unset" : 0,
                         right: msg?.from === "user" ? 0 : "unset",
                         whiteSpace: "nowrap",
                       }}
                     >
-                      {(msg?.timeStamp as string)?.split(" ")[0]}
+                      {msg?.timeStamp}
                     </motion.span>
                   </motion.div>
                 )}
