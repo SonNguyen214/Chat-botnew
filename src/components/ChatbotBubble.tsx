@@ -19,8 +19,9 @@ const ChatbotBubble: React.FC<{ config: ChatbotConfig }> = ({ config }) => {
       : { right: 20, left: "auto" };
 
   const handleOpen = () => {
-    setOpen(true);
-    config?.openPopup?.();
+    setOpen(!open);
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    !open && config?.openPopup?.();
   };
 
   const handleClose = () => {
