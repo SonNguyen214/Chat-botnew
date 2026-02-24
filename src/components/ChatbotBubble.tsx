@@ -21,7 +21,7 @@ const ChatbotBubble: React.FC<{ config: ChatbotConfig }> = ({ config }) => {
   const handleOpen = () => {
     setOpen(!open);
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    !open && config?.openPopup?.();
+    open ? config?.closePopup?.() : config?.openPopup?.();
   };
 
   const handleClose = () => {
