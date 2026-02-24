@@ -19,12 +19,12 @@ const ChatbotBubble: React.FC<{ config: ChatbotConfig }> = ({ config }) => {
       : { right: 20, left: "auto" };
 
   return (
-    <div className="chat-wrapper">
+    <div className="chat-wrapper" style={{position: "fixed", bottom: 20, right: 20, zIndex: 999999, height: "fit-content", width: "fit-content"}}>
       <div
         className="fab-icon"
         onClick={() => setOpen(!open)}
         style={{
-          position: "fixed",
+          position: "absolute",
           bottom: 20,
           width: bubbleWidth,
           height: bubbleHeight,

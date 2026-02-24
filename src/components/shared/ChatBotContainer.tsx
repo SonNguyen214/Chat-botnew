@@ -48,7 +48,7 @@ export const ChatBotContainer = ({ config, setClosePopup }: IProps) => {
       exit={{ opacity: 0, y: 30 }}
       transition={{ duration: 0.3 }}
       style={{
-        position: "fixed",
+        position: "absolute",
         bottom: bubbleHeight + 10,
         width: config?.width || 400,
         height: config?.height || 600,
