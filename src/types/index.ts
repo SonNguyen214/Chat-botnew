@@ -27,6 +27,8 @@ export interface ChatbotConfig extends CSSStyle {
   autoShowDelay?: number;
   fontFamily?: string;
   botDescription?: string;
+  openPopup?: any;
+  closePopup?: any;
 }
 
 interface CSSStyle {

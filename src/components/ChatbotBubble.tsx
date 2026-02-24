@@ -18,11 +18,31 @@ const ChatbotBubble: React.FC<{ config: ChatbotConfig }> = ({ config }) => {
       ? { left: 20, right: "auto" }
       : { right: 20, left: "auto" };
 
+  const handleOpen = () => {
+    setOpen(true);
+    config?.openPopup?.();
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    config?.closePopup?.();
+  };
+
   return (
-    <div className="chat-wrapper" style={{position: "fixed", bottom: 20, right: 20, zIndex: 999999, height: "fit-content", width: "fit-content"}}>
+    <div
+      className="chat-wrapper"
+      style={{
+        position: "fixed",
+        bottom: 20,
+        right: 20,
+        zIndex: 999999,
+        height: "fit-content",
+        width: "fit-content",
+      }}
+    >
       <div
         className="fab-icon"
-        onClick={() => setOpen(!open)}
+        onClick={handleOpen}
         style={{
           position: "absolute",
           bottom: 20,
@@ -61,10 +81,7 @@ const ChatbotBubble: React.FC<{ config: ChatbotConfig }> = ({ config }) => {
 
       <AnimatePresence>
         {open && (
-          <ChatBotContainer
-            config={config}
-            setClosePopup={() => setOpen(false)}
-          />
+          <ChatBotContainer config={config} setClosePopup={handleClose} />
         )}
       </AnimatePresence>
     </div>
