@@ -44,7 +44,7 @@ const Footer = ({ messages, setMessages, config, primaryColor }: IProps) => {
     try {
       let botResponse = "";
       const response = await axios.post(
-        `https://dev-ai.vnpost.vn/mipo-plugin/question`,
+        `https://mipo.vnpost.vn/chatbot.api/v1/plugin/question`,
         {
           question: text,
           conversationId: storeConversationId ? storeConversationId : null,
@@ -56,9 +56,11 @@ const Footer = ({ messages, setMessages, config, primaryColor }: IProps) => {
             "X-User-Id": config?.u_id,
             "Content-Type": "application/json",
             "X-Origin":
-              origin && !origin.startsWith("about")
+              origin &&
+              !origin.startsWith("about") &&
+              !origin?.includes("file://")
                 ? origin
-                : (config?.idApp ?? "") ,
+                : (config?.idApp ?? ""),
           },
         },
       );
