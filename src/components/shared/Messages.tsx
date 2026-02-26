@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import TypingDots from "./TypingDots";
 import type { Ref } from "react";
 import logo from "../../../assets/logo.png";
+import remarkGfm from "remark-gfm";
 
 interface IProps {
   config: ChatbotConfig;
@@ -136,7 +137,7 @@ const Messages = ({ config, messages, messagesEndRef, description }: IProps) => 
                     transition={{ duration: 0.4 }}
                   >
                     <ReactMarkdown
-                      remarkPlugins={[remarkMath]}
+                      remarkPlugins={[remarkMath, remarkGfm]}
                       rehypePlugins={[rehypeKatex]}
                     >
                       {msg?.text}

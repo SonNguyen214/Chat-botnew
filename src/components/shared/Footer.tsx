@@ -44,7 +44,7 @@ const Footer = ({ messages, setMessages, config, primaryColor }: IProps) => {
     try {
       let botResponse = "";
       const response = await axios.post(
-        `https://dev-tla-vhx.vnpost.vn/chatbot.api/v1/plugin/question`,
+        `https://mipo.vnpost.vn/chatbot.api/v1/plugin/question`,
         {
           question: text,
           conversationId: storeConversationId ? storeConversationId : null,

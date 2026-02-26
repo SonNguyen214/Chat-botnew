@@ -3,7 +3,7 @@ import type { ChatbotConfig } from "../types";
 import { AnimatePresence } from "framer-motion";
 import ChatBotContainer from "./shared/ChatBotContainer";
 
-const ChatbotPopup: React.FC<{ config: ChatbotConfig }> = ({ config }) => {
+const ChatbotAppMobile: React.FC<{ config: ChatbotConfig }> = ({ config }) => {
   const [open, setOpen] = useState(false);
 
   const delayTime = config?.autoShowDelay ?? 5000;
@@ -17,51 +17,26 @@ const ChatbotPopup: React.FC<{ config: ChatbotConfig }> = ({ config }) => {
   }, []);
 
   const popupConfig = {
-    ...config,
     chatWindowStyle: {
-      position: "absolute",
+      position: "unset",
       bottom: "unset",
       right: "unset",
+      width: "auto",
+      height: "auto"
     },
+    ...config,
   };
 
   return open ? (
-    <div
-      className="chat-wrapper"
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <div
-        className="overlay"
-        style={{
-          position: "absolute",
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-          backgroundColor: "rgba(0,0,0,0.2)",
-        }}
-        onClick={() => setOpen(false)}
-      ></div>
-
       <AnimatePresence>
         <ChatBotContainer
           config={popupConfig}
           setClosePopup={() => setOpen(false)}
         />
       </AnimatePresence>
-    </div>
   ) : (
     <></>
   );
 };
 
-export default ChatbotPopup;
+export default ChatbotAppMobile;
