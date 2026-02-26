@@ -19,7 +19,7 @@ const Header = ({
 }: IProps) => {
   return (
     <motion.div
-      className="chat-header"
+      className="mipo-chat-header"
       style={{
         background: config.headerStyle?.background || primaryColor,
         color: config.headerStyle?.color || "#333",
@@ -42,7 +42,7 @@ const Header = ({
         }}
       >
         <img
-          className="chat-avatar"
+          className="mipo-chat-avatar"
           src={config?.botAvatar || logo}
           alt="Bot"
           style={{
@@ -72,7 +72,7 @@ const Header = ({
       </motion.div>
 
       <motion.div
-        className="chat-actions"
+        className="mipo-chat-actions"
         style={{
           display: "flex",
           gap: 8,
@@ -81,7 +81,7 @@ const Header = ({
       >
         <motion.span
           whileHover={{ backgroundColor: "#777373" }}
-          className="minimize"
+          className="mipo-chat-minimize"
           onClick={() => setClosePopup(false)}
           style={{
             color: config.headerStyle?.color ?? "#333",

@@ -31,7 +31,7 @@ const ChatbotBubble: React.FC<{ config: ChatbotConfig }> = ({ config }) => {
 
   return (
     <div
-      className="chat-wrapper"
+      className="mipo-chat-wrapper"
       style={{
         position: "fixed",
         bottom: 20,
@@ -42,7 +42,7 @@ const ChatbotBubble: React.FC<{ config: ChatbotConfig }> = ({ config }) => {
       }}
     >
       <div
-        className="fab-icon"
+        className="mipo-fab-icon"
         onClick={handleOpen}
         style={{
           position: "absolute",

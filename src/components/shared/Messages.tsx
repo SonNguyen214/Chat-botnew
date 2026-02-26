@@ -32,19 +32,19 @@ const childVariants = {
 const Messages = ({ config, messages, messagesEndRef, description }: IProps) => {
   return (
     <motion.div
-      className="message-wrapper"
+      className="mipo-message-wrapper"
       style={{
         flex: 1,
         padding: config.chatWindowStyle?.padding || 16,
         overflowY: "auto",
         display: "flex",
         flexDirection: "column",
-        gap: 12,
+        gap: 16,
         fontSize: config.chatWindowStyle?.fontSize || 14,
       }}
     >
       <motion.div
-        className="avatar-window"
+        className="mipo-avatar-window"
         style={{
           display: "flex",
           justifyContent: "center",
@@ -56,13 +56,13 @@ const Messages = ({ config, messages, messagesEndRef, description }: IProps) => 
         }}
       >
         <motion.img
-          className="avatar-in-window"
+          className="mipo-avatar-in-window"
           src={config.botAvatar || logo}
           alt="Bot"
           style={{ width: 60, height: 60, borderRadius: "50%" }}
         />
         <motion.div
-          className="name-in-window"
+          className="mipo-name-in-window"
           style={{ fontSize: 16, fontWeight: 600 }}
         >
           {config?.botName}
@@ -95,7 +95,7 @@ const Messages = ({ config, messages, messagesEndRef, description }: IProps) => 
             >
               {isBot && (
                 <img
-                  className="message-avatar"
+                  className="mipo-chat-message-avatar"
                   src={config.botAvatar || logo}
                   style={{ width: 30, height: 30, borderRadius: "50%" }}
                 />
@@ -103,7 +103,7 @@ const Messages = ({ config, messages, messagesEndRef, description }: IProps) => 
               <motion.div
                 whileHover="visible"
                 initial="hidden"
-                className="message-content"
+                className="mipo-chat-message-content"
                 style={{
                   background:
                     msg?.from === "user"
@@ -124,6 +124,7 @@ const Messages = ({ config, messages, messagesEndRef, description }: IProps) => 
                   alignItems: msg?.from === "botLoading" ? "center" : "normal",
                   display: msg?.from === "botLoading" ? "flex" : "block",
                   position: "relative",
+                  overflow: 'auto'
                 }}
               >
                 {msg?.from === "botLoading" ? (
@@ -146,11 +147,11 @@ const Messages = ({ config, messages, messagesEndRef, description }: IProps) => 
                     <motion.span
                       variants={idx === 0 ? {} : childVariants}
                       style={{
-                        color: "gray",
+                        color: "#333",
                         fontSize: 12,
                         position: "absolute",
                         display: idx === 0 ? 'none' : "block",
-                        top: idx === 0 ? '-18px' : "-30px",
+                        top: idx === 0 ? '-18px' : "-24px",
                         left: msg?.from === "user" ? "unset" : 0,
                         right: msg?.from === "user" ? 0 : "unset",
                         whiteSpace: "nowrap",

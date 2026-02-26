@@ -96,7 +96,7 @@ const Footer = ({ messages, setMessages, config, primaryColor }: IProps) => {
 
   return (
     <motion.div
-      className="footer"
+      className="mipo-chat-footer"
       style={{
         padding: "10px 16px",
         paddingBottom: 0,
@@ -146,7 +146,7 @@ const Footer = ({ messages, setMessages, config, primaryColor }: IProps) => {
         />
 
         <button
-          className="send-button"
+          className="mipo-send-button"
           onClick={() => !isLoading && sendMessage(input)}
           style={{
             position: "absolute",

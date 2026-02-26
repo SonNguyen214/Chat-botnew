@@ -42,7 +42,7 @@ export const ChatBotContainer = ({ config, setClosePopup }: IProps) => {
 
   return (
     <motion.div
-      className="chat-window"
+      className="mipo-chat-window"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 30 }}

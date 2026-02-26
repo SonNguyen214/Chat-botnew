@@ -26,7 +26,7 @@ const PopupReset = ({
       }}
     >
       <div
-        className="overlay"
+        className="mipo-chat-overlay"
         onClick={() => setShowConfirmReset(false)}
         style={{
           position: "absolute",
@@ -55,7 +55,7 @@ const PopupReset = ({
         }}
       >
         <div
-          className="title"
+          className="mipo-chat-title"
           style={{
             margin: "16px auto",
             fontSize: "16px",
